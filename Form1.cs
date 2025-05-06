@@ -17,13 +17,17 @@ namespace ListSearchAndReplaceApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UpdateListLabel();
+            UpdateNumbersListBox();
             resultLabel.Text = "App loaded.";
         }
 
-        private void UpdateListLabel()
+        private void UpdateNumbersListBox()
         {
-            listLabel.Text = "Current List: " + string.Join(", ", numbers);
+            numbersListBox.Items.Clear();
+            foreach (var number in numbers)
+            {
+                numbersListBox.Items.Add(number);
+            }
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -61,7 +65,7 @@ namespace ListSearchAndReplaceApp
             {
                 numbers[lastFoundIndex] = replaceValue;
                 resultLabel.Text = $"Replaced {lastSearchedValue} with {replaceValue}.";
-                UpdateListLabel();
+                UpdateNumbersListBox();
                 searchTextBox.Text = string.Empty;
                 replaceTextBox.Text = string.Empty;
                 lastSearchedValue = null;
